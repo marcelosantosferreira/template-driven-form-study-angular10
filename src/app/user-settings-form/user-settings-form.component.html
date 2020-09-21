@@ -3,8 +3,10 @@
   <form #frm="ngForm" ngNativeValidate><!-- template variable reference -->
     <div class="form-group">
       <label for="name">Name</label>
-      <input pattern="M.*" id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
+      <input required #classTest id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
     </div>
+
+    <h3>{{ classTest.className }}</h3>
 
     <div class="form-group">
       <label for="email">E-mail</label>
