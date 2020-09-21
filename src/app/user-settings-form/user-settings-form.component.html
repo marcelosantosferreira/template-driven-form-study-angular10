@@ -3,15 +3,12 @@
   <form #frm="ngForm" ngNativeValidate><!-- template variable reference -->
     <div class="form-group">
       <label for="name">Name</label>
-      <input required #propertyTest="ngModel" id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
+      <input required #nameField="ngModel" id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
+      <!--Error Message-->
+      <div class="alert alert-danger" [hidden]="nameField.valid || nameField.untouched">
+        Enter a name
+      </div>
     </div>
-
-    <h3>dirty: {{ propertyTest.dirty }}</h3>
-    <h3>pristine: {{ propertyTest.pristine }}</h3>
-    <h3>touched: {{ propertyTest.touched }}</h3>
-    <h3>untouched: {{ propertyTest.untouched }}</h3>
-    <h3>valid: {{ propertyTest.valid }}</h3>
-    <h3>invalid: {{ propertyTest.invalid }}</h3>
 
     <div class="form-group">
       <label for="email">E-mail</label>
