@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { UserSettings } from '../data/user-settings';
 
 @Component({
@@ -21,4 +22,7 @@ export class UserSettingsFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(f: NgForm): void{
+    console.log(f.valid);
+  }
 }

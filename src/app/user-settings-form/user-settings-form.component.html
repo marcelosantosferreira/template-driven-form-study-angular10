@@ -1,11 +1,12 @@
 <div class="container">
   <h2>User Settings</h2>
-  <form #frm="ngForm" ngNativeValidate><!-- template variable reference -->
+  <form #frm="ngForm" (ngSubmit)="onSubmit(frm)"><!-- template variable reference -->
     <div class="form-group">
       <label for="name">Name</label>
-      <input required #nameField="ngModel" id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
+      <input required #nameField="ngModel" id="name" name="name" class="form-control"
+      [(ngModel)]="userSettings.name" [class.field-error]="frm.submitted && nameField.invalid"/>
       <!--Error Message-->
-      <div class="alert alert-danger" [hidden]="nameField.valid || nameField.untouched">
+      <div class="alert alert-danger" [hidden]="!frm.submitted || nameField.valid">
         Enter a name
       </div>
     </div>
