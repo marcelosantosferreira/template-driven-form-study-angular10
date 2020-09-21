@@ -8,11 +8,13 @@ import { UserSettings } from '../data/user-settings';
 })
 export class UserSettingsFormComponent implements OnInit {
 
-  userSettings : UserSettings = {
-    name: 'your name...' ,
-    email: 'your email...',
+  originalUserSettings : UserSettings = {
+    name: null ,
+    email: null,
     receiveNewsletter: true
   };
+
+  userSettings: UserSettings = {...this.originalUserSettings}; /* 2 objects to prevent data loss: back button, cancel button */
 
   constructor() { }
 

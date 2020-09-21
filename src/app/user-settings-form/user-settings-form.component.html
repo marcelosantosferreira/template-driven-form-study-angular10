@@ -1,14 +1,14 @@
 <div class="container">
   <h2>User Settings</h2>
-  <form #frm="ngForm"><!-- template variable reference -->
+  <form #frm="ngForm" ngNativeValidate><!-- template variable reference -->
     <div class="form-group">
       <label for="name">Name</label>
-      <input id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
+      <input pattern="M.*" id="name" name="name" class="form-control" [(ngModel)]="userSettings.name"/>
     </div>
 
     <div class="form-group">
       <label for="email">E-mail</label>
-      <input id="email" name="email" class="form-control" [(ngModel)]="userSettings.email"/>
+      <input required id="email" name="email" class="form-control" [(ngModel)]="userSettings.email"/>
     </div>
 <!--
     <div class="form-group">
