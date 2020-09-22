@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; /* Forms 1 */
 import { UserSettingsFormComponent } from './user-settings-form/user-settings-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UserSettingsFormComponent } from './user-settings-form/user-settings-fo
   imports: [
     BrowserModule,
     FormsModule, /* Forms 2 */
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
