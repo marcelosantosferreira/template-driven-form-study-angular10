@@ -5,8 +5,7 @@
       <label for="name">Name</label>
       <input required #nameField="ngModel" id="name" name="name" class="form-control"
       [(ngModel)]="userSettings.name"
-      [class.field-error]="frm.submitted && nameField.invalid"
-      (blur)="onBlur(nameField)"/>
+      [class.field-error]="frm.submitted && nameField.invalid"/>
       <!--Error Message-->
       <div class="alert alert-danger" [hidden]="!frm.submitted || nameField.valid">
         Enter a name
@@ -15,22 +14,28 @@
 
     <div class="form-group">
       <label for="email">E-mail</label>
-      <input required id="email" name="email" class="form-control" [(ngModel)]="userSettings.email"/>
+      <input required id="email" name="email" #emailField="ngModel" class="form-control"
+      [(ngModel)]="userSettings.email"
+      [class.field-error]="frm.submitted && emailField.invalid"/>
+      <!--Error Message-->
+      <div class="alert alert-danger" [hidden]="!frm.submitted || emailField.valid">
+        Enter a valid email
+      </div>
     </div>
-<!--
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" id="password" name="password">
-    </div>
--->
 
     <div class="form-group">
       <label for="subscriptionType">Subscription Type</label>
-      <select id="subscriptionType" name="subscriptionType" class="form-control" [(ngModel)]="userSettings.subscriptionType">
+      <select id="subscriptionType" name="subscriptionType" class="form-control" #subTypeField="ngModel" required
+      [(ngModel)]="userSettings.subscriptionType"
+      [class.field-error]="frm.submitted && subTypeField.invalid">
         <option *ngFor="let type of subscriptionTypes | async">
           {{type}}
         </option>
       </select>
+      <!--Error Message-->
+      <div class="alert alert-danger" [hidden]="!frm.submitted || subTypeField.valid">
+        Please select
+      </div>
     </div>
 
     <div class="form-check form-group">
@@ -39,22 +44,15 @@
       <label class="form-check-label" for="receiveNewsletter">Receive newsletter</label>
     </div>
 
-    <button class="btn btn-primary">submit</button>
-    &nbsp;&nbsp;&nbsp;
-    <button class="btn btn-primary" (click)="getHerbologia()">get herbologia</button>
+    <button class="btn btn-primary">Submit</button>
 
-     <!--Http Error Message-->
-     <div class="alert alert-danger alert-dismissible" [hidden]="!postError">
+    <!--Http Error Message-->
+    <div class="alert alert-danger alert-dismissible" [hidden]="!postError || (nameField.valid && emailField.valid && subTypeField.valid)">
       {{postErrorMessage}}
     </div>
   </form>
-
+  <br/>
+  Is form valid? {{ frm.valid }}
+  <br/>
   {{ userSettings | json }}
 </div>
-
-<!--
-<form>
-  <input placeholder="name"/>
-  <button>submit</button>
-</form>
--->

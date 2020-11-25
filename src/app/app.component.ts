@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'estudo-basico01';
-
-  showAlert(){
-    alert(1);
-  }
 }

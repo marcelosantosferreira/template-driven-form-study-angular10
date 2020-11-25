@@ -18,10 +18,9 @@ export class UserSettingsFormComponent implements OnInit {
     receiveNewsletter: true
   };
 
-  userSettings: UserSettings = {...this.originalUserSettings}; /* 2 objects to prevent data loss: back button, cancel button */
+  userSettings: UserSettings = {...this.originalUserSettings};
   postError = false;
   postErrorMessage = '';
-  //subscriptionTypes = ['one','two'];
   subscriptionTypes : Observable<string[]>;
 
   constructor(private dataService: DataService) { }
@@ -31,37 +30,17 @@ export class UserSettingsFormComponent implements OnInit {
   }
 
   onSubmit(f: NgForm): void{
-    //console.log('onSbumit: ', f.valid);
 
     if (f.valid) {
       this.dataService.postForm(this.userSettings).subscribe(
         result => console.log('success: ', result),
         error => this.handleHttpError(error)
       );
+      this.postError = false;
     }else{
       this.postError = true;
       this.postErrorMessage = 'Please fix the above errors';
     }
-
-
-    /* .subscribe(
-          function for successfull response,
-          function in case of error
-    ) */
-  }
-
-  getHerbologia():void{
-    this.dataService.getHerbologia().subscribe(
-      success => (success: any) => {
-        console.log(success);
-        alert(success);
-      },
-      error => alert(error)
-    )
-  }
-
-  onBlur(field: NgModel){
-    //console.log('onBlur: ', field.valid);
   }
 
   handleHttpError(e: any){
